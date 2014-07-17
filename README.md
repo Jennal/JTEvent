@@ -1,6 +1,20 @@
 JTEvent
 =======
 
+Overview
+-------------
+
+Qt Event like, without Qt essential support.
+
+Features
+-------------
+
+* Fast for coding, fast for performance
+* Object method callback
+* Strong type constraints
+* Support for compilers as vs/g++/llvm/clang
+* Automatic disconnect, no need to concern about disconnect
+
 Usage
 -------------
 
@@ -21,13 +35,18 @@ public:
 		onChange(m_val);
 	}
 
+	int getValue(void)
+	{
+		return m_val;
+	}
+
 	void onNumberChangedSlot(int newVal)
 	{
-		std::cout << "Slider::onNumberChangedSlot: " << newVal << std::endl;
+		std::cout &lt;&lt; "Slider::onNumberChangedSlot: " &lt;&lt; newVal &lt;&lt; std::endl;
 		setValue(newVal);
 	}
 
-	JT::Event<int> onChange;
+	JT::Event&lt;int&gt; onChange;
 
 private:
 	int m_val;
@@ -46,20 +65,37 @@ public:
 		onChange(m_val);
 	}
 
+	int getValue(void)
+	{
+		return m_val;
+	}
+
 	void onSliderChangedSlot(int newVal)
 	{
-		std::cout << "Number::onSliderChangedSlot: " << newVal << std::endl;
+		std::cout &lt;&lt; "Number::onSliderChangedSlot: " &lt;&lt; newVal &lt;&lt; std::endl;
 		setValue(newVal);
 	}
 
-	JT::Event<int> onChange;
+	JT::Event&lt;int&gt; onChange;
 
 private:
 	int m_val;
 };
 
 int main() {
-	//coming soon...
+	Silder* slider = new Slider;
+	Number* number = new Number;
+
+	slider-&gt;onChange.connect(number, EVENT_SLOT(Number::onSliderChangedSlot, int));
+	number-&gt;onChange.connect(slider, EVENT_SLOT(Slider::onSliderChangedSlot, int));
+
+	slider->setValue(10);
+	std::cout &lt;&lt; "slider value: " &lt;&lt; slider-&gt;getValue() &lt;&lt; std::endl;
+	std::cout &lt;&lt; "number value: " &lt;&lt; slider-&gt;getValue() &lt;&lt; std::endl;
+
+	number->setValue(20);
+	std::cout &lt;&lt; "slider value: " &lt;&lt; slider-&gt;getValue() &lt;&lt; std::endl;
+	std::cout &lt;&lt; "number value: " &lt;&lt; slider-&gt;getValue() &lt;&lt; std::endl;
 
 	return 0;
 }
