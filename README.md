@@ -89,3 +89,10 @@ int main() {
     return 0;
 }
 ```
+
+Running Tests
+-------------
+
+    $ cd test
+    $ make
+    $ output/test
