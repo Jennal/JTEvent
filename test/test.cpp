@@ -53,11 +53,11 @@ int main() {
 
     slider->setValue(10);
     std::cout << "slider value: " << slider->getValue() << std::endl;
-    std::cout << "number value: " << slider->getValue() << std::endl;
+    std::cout << "number value: " << number->getValue() << std::endl;
 
     number->setValue(20);
     std::cout << "slider value: " << slider->getValue() << std::endl;
-    std::cout << "number value: " << slider->getValue() << std::endl;
+    std::cout << "number value: " << number->getValue() << std::endl;
 
     /* automatic disconnect while EventTarget deleted */
     delete number;
