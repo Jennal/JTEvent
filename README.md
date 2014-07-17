@@ -86,6 +86,7 @@ int main() {
 	Silder* slider = new Slider;
 	Number* number = new Number;
 
+	/* test connected events */
 	slider-&gt;onChange.connect(number, EVENT_SLOT(Number::onSliderChangedSlot, int));
 	number-&gt;onChange.connect(slider, EVENT_SLOT(Slider::onSliderChangedSlot, int));
 
@@ -96,6 +97,12 @@ int main() {
 	number->setValue(20);
 	std::cout &lt;&lt; "slider value: " &lt;&lt; slider-&gt;getValue() &lt;&lt; std::endl;
 	std::cout &lt;&lt; "number value: " &lt;&lt; slider-&gt;getValue() &lt;&lt; std::endl;
+
+	/* automatic disconnect while EventTarget deleted */
+	delete number;
+	slider->setValue(10);
+
+	delete slider;
 
 	return 0;
 }
