@@ -5,7 +5,7 @@ Usage
 -------------
 
 <pre><code>
-#include <iostream>
+#include &lt;iostream&gt;
 #include "JTEvent.h"
 
 class Slider : public JT::EventTarget {
