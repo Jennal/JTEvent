@@ -18,7 +18,7 @@ Features
 Usage
 -------------
 
-<pre><code>
+```cpp
 #include &lt;iostream&gt;
 #include "JTEvent.h"
 
@@ -107,4 +107,4 @@ int main() {
 	return 0;
 }
 
-</code></pre>
+```
