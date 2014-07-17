@@ -22,36 +22,6 @@ Usage
 #include <iostream>
 #include "JTEvent.h"
 
-class Slider : public JT::EventTarget {
-public:
-	Slider() : m_val(0) {}
-	~Slider() {}
-
-	void setValue(int newVal)
-	{
-		if (newVal == m_val) return;
-
-		m_val = newVal;
-		onChange(m_val);
-	}
-
-	int getValue(void)
-	{
-		return m_val;
-	}
-
-	void onNumberChangedSlot(int newVal)
-	{
-		std::cout << "Slider::onNumberChangedSlot: " << newVal << std::endl;
-		setValue(newVal);
-	}
-
-	JT::Event<int> onChange;
-
-private:
-	int m_val;
-};
-
 class Number : public JT::EventTarget {
 public:
 	Number() : m_val(0) {}
@@ -82,13 +52,25 @@ private:
 	int m_val;
 };
 
+class Slider : public Number {
+public:
+	Slider() {}
+	~Slider() {}
+
+	void onNumberChangedSlot(int newVal)
+	{
+		std::cout << "Slider::onNumberChangedSlot: " << newVal << std::endl;
+		setValue(newVal);
+	}
+};
+
 int main() {
 	Silder* slider = new Slider;
 	Number* number = new Number;
 
 	/* test connected events */
 	slider->onChange.connect(number, EVENT_SLOT(Number::onSliderChangedSlot, int));
-	number->onChange.connect(slider, EVENT_SLOT(Slider::onSliderChangedSlot, int));
+	number->onChange.connect(slider, EVENT_SLOT(Slider::onNumberChangedSlot, int));
 
 	slider->setValue(10);
 	std::cout << "slider value: " << slider->getValue() << std::endl;
