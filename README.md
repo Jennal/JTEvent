@@ -19,7 +19,7 @@ Usage
 -------------
 
 ```cpp
-#include &lt;iostream&gt;
+#include <iostream>
 #include "JTEvent.h"
 
 class Slider : public JT::EventTarget {
@@ -42,11 +42,11 @@ public:
 
 	void onNumberChangedSlot(int newVal)
 	{
-		std::cout &lt;&lt; "Slider::onNumberChangedSlot: " &lt;&lt; newVal &lt;&lt; std::endl;
+		std::cout << "Slider::onNumberChangedSlot: " << newVal << std::endl;
 		setValue(newVal);
 	}
 
-	JT::Event&lt;int&gt; onChange;
+	JT::Event<int> onChange;
 
 private:
 	int m_val;
@@ -72,11 +72,11 @@ public:
 
 	void onSliderChangedSlot(int newVal)
 	{
-		std::cout &lt;&lt; "Number::onSliderChangedSlot: " &lt;&lt; newVal &lt;&lt; std::endl;
+		std::cout << "Number::onSliderChangedSlot: " << newVal << std::endl;
 		setValue(newVal);
 	}
 
-	JT::Event&lt;int&gt; onChange;
+	JT::Event<int> onChange;
 
 private:
 	int m_val;
@@ -87,16 +87,16 @@ int main() {
 	Number* number = new Number;
 
 	/* test connected events */
-	slider-&gt;onChange.connect(number, EVENT_SLOT(Number::onSliderChangedSlot, int));
-	number-&gt;onChange.connect(slider, EVENT_SLOT(Slider::onSliderChangedSlot, int));
+	slider->onChange.connect(number, EVENT_SLOT(Number::onSliderChangedSlot, int));
+	number->onChange.connect(slider, EVENT_SLOT(Slider::onSliderChangedSlot, int));
 
 	slider->setValue(10);
-	std::cout &lt;&lt; "slider value: " &lt;&lt; slider-&gt;getValue() &lt;&lt; std::endl;
-	std::cout &lt;&lt; "number value: " &lt;&lt; slider-&gt;getValue() &lt;&lt; std::endl;
+	std::cout << "slider value: " << slider->getValue() << std::endl;
+	std::cout << "number value: " << slider->getValue() << std::endl;
 
 	number->setValue(20);
-	std::cout &lt;&lt; "slider value: " &lt;&lt; slider-&gt;getValue() &lt;&lt; std::endl;
-	std::cout &lt;&lt; "number value: " &lt;&lt; slider-&gt;getValue() &lt;&lt; std::endl;
+	std::cout << "slider value: " << slider->getValue() << std::endl;
+	std::cout << "number value: " << slider->getValue() << std::endl;
 
 	/* automatic disconnect while EventTarget deleted */
 	delete number;
