@@ -1,3 +1,4 @@
+/************************************************************
 The MIT License (MIT)
 
 Copyright (c) 2014 Jennal (jennalcn@gmail.com)
@@ -19,3 +20,17 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+************************************************************/
+
+#ifndef __JTEVENT_H__
+#define __JTEVENT_H__
+
+/* Event */
+#include "IDisconnectable.h"
+#include "EventTarget.h"
+#include "Action.h"
+#include "Func.h"
+#include "Event.h"
+#include "EventWithReturn.h"
+
+#endif /* __JTEVENT_H__ */
