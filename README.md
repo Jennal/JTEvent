@@ -55,7 +55,7 @@ Number* number = new Number;
 onChange.connect(number, EVENT_SLOT(Number::onChangedSlot, int));
 ```
 
-#### trigger the Event
+#### Trigger the Event
 
 ```cpp
 //call the Event just like normal function
