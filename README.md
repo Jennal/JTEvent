@@ -18,6 +18,44 @@ Features
 Usage
 -------------
 
+### All you need
+
+* **Event\<T\>**
+* **EventTarget** has a **Method** which implement **void *foo(T)**
+* connect **EventTarget** and **Method** to **Event**
+
+#### Event\<T\>
+
+```cpp
+Event<int> onChange;
+```
+
+#### EventTarget
+
+```cpp
+class Number : public JT::EventTarget {
+public:
+    /* some code we don't care about */
+    
+    //this is the slot to event which we just make
+    void onChangedSlot(int newVal)
+    {
+    	if (newVal == m_val) return;
+        m_val = newVal;
+    }
+}
+```
+
+#### Connection
+
+```cpp
+Event<int> onChange;
+Number* number = new Number;
+onChange.connect(number, EVENT_SLOT(Number::onChangedSlot, int));
+```
+
+### Full sample
+
 ```cpp
 #include <iostream>
 #include "JTEvent.h"
