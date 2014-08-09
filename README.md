@@ -23,6 +23,7 @@ Usage
 * **Event\<T\>**
 * **EventTarget** has a **Method** which implement **void *foo(T)**
 * connect **EventTarget** and **Method** to **Event**
+* trigger the **Event**
 
 #### Event\<T\>
 
@@ -37,7 +38,7 @@ class Number : public JT::EventTarget {
 public:
     /* some code we don't care about */
     
-    //this is the slot to event which we just make
+    //this is the slot to event which we just made
     void onChangedSlot(int newVal)
     {
     	if (newVal == m_val) return;
@@ -52,6 +53,13 @@ public:
 Event<int> onChange;
 Number* number = new Number;
 onChange.connect(number, EVENT_SLOT(Number::onChangedSlot, int));
+```
+
+#### trigger the Event
+
+```cpp
+//call the Event just like normal function
+onChange(1);
 ```
 
 ### Full sample
